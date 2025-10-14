@@ -1,0 +1,18 @@
+INFO:root:This message is appended to app.log.
+INFO:GenerateData:count 8
+INFO:root:This message is appended to app.log.
+INFO:root:This message is appended to app.log.
+INFO:root:This message is appended to app.log.
+INFO:root:This message is appended to app.log.
+INFO:root:This message is appended to app.log.
+INFO:root:This message is appended to app.log.
+INFO:root:This message is appended to app.log.
+INFO:root:This message is appended to app.log.
+INFO:GenerateData:count 8
+INFO:GenerateData:count 8
+INFO:GenerateData:count 8
+INFO:GenerateData:count 8
+INFO:GenerateData:count 8
+INFO:GenerateData:count 8
+INFO:GenerateData:count 8
+INFO:GenerateData:count 12
