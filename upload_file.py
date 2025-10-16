@@ -34,10 +34,14 @@ class FileUpload:
             print(f"Upload failed: {e}")
 
 
-if __name__ == "__main__":
+
+def main():
     config_data = read_config()
     BUCKET_NAME = config_data['Aws']['bucket_name']
-    FILE_PATH = r'C:\Users\ZML-WIN-StevenD-01\Desktop\Project1_1\employee_data.parquet'
+    FILE_PATH = r'C:\Users\ZML-WIN-StevenD-01\Desktop\Project1_1\employee1.parquet'
     
     uploader = FileUpload(BUCKET_NAME)
     uploader.upload_parquet(FILE_PATH)
+
+if __name__ == "__main__":
+    main()

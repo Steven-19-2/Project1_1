@@ -1,14 +1,13 @@
 from abc import ABC, abstractmethod
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from datetime import date
 from models import Base, Employee
 from faker import Faker
 import random
 from sqlalchemy import create_engine, Column, Integer, String, Float, Date
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.orm import sessionmaker
 import configparser
-Base = declarative_base()
+
+
 class DataImporter(ABC):
     @abstractmethod
     def import_data(self, *args, **kwargs):
@@ -20,7 +19,6 @@ class RDSImporter(DataImporter):
         self.handler = RDSTableHandler(db_config)
 
     def import_data(self):
-        self.handler.create_table_if_not_exists()
         if self.handler.is_table_empty():
             self.handler.insert_sample_records(10000)
             print("Inserted 10,000 sample records")
@@ -67,23 +65,19 @@ def main():
     config = configparser.ConfigParser()
     config.read("config.ini")
 
-    import_type = input("Enter import type (S3/RDS): ").strip()
+    import_type = "RDS"
 
-    if import_type == "S3":
-        s3_config = config["S3"]
-        importer = "S3"
-        file_path = input("Enter local file path to upload: ").strip()
-        importer.import_data(file_path)
-
+    if import_type == "RDS":
+        rds_config = config["RDS"]
+        importer = RDSImporter(rds_config)
+        importer.import_data()
 
 
-        # optional: view all records
+
         handler = importer.handler
         employees = handler.get_all()
         print(f"Total records in DB: {len(employees)}")
 
-    else:
-        print("Invalid import type. Choose S3 or RDS.")
 
 
 if __name__ == "__main__":
