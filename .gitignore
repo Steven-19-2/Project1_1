@@ -1,5 +1,5 @@
 config.ini
 app.log
-_pycache_
+__pycache__
 New folder
 secret.key
